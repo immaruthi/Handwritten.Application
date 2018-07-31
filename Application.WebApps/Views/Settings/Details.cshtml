@@ -1,0 +1,74 @@
+﻿@model Application.WebApps.Models.PocSettingModelData
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>PocSettingModelData</h4>
+        <hr />
+        <dl style="width:450px;background-color:cornflowerblue" class="d1-vertical">
+            <dt>
+                @Html.DisplayNameFor(model => model.AzureConnectionString)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.AzureConnectionString)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FileStorageReference)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FileStorageReference)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.CosmosDBConnectionString)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.CosmosDBConnectionString)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.cosmosDBPrimaryKey)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.cosmosDBPrimaryKey)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.VisionAPIConnectionString)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.VisionAPIConnectionString)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.VisionAPISubscriptionKey)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.VisionAPISubscriptionKey)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
