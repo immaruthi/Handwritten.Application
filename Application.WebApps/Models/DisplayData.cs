@@ -5,10 +5,10 @@ using System.Web;
 
 namespace Application.WebApps.Models
 {
-    public class DisplayData
-    {
-        public List<APIData> listApiData { get; set; }
-    }
+    //public class DisplayData
+    //{
+    //    public List<APIData> listApiData { get; set; }
+    //}
 
 
     public class APIData

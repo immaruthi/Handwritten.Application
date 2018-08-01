@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Application.WebApps.Models.DisplayData>
+﻿@model List<Application.WebApps.Models.APIData>
 
 @{
     Layout = null;
@@ -8,6 +8,8 @@
 
 <html lang="en">
 <head>
+
+
 
     <meta charset="utf-8">
     <title>API Results</title>
@@ -23,6 +25,109 @@
     <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="~/css/style-responsive.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <style type="text/css">
+        .edit-mode {
+            vertical-align:top;
+        }
+
+        .edit-user {
+        }
+
+            .edit-user display-mode {
+            }
+
+        .save-user edit-mode {
+        }
+
+        .display-mode {
+            vertical-align:top;
+        }
+
+        .cancel-user {
+        }
+
+        .webgrid-table {
+            font-family: Arial,Helvetica,sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            width: 1000px;
+            display: table;
+            border-collapse: collapse;
+            border: solid px #C5C5C5;
+            background-color: white;
+        }
+
+            .webgrid-table td, th {
+                border: 1px solid #C5C5C5;
+                padding: 3px 7px 2px;
+            }
+
+        .webgrid-header, .webgrid-header a {
+            background-color: #E3E3E3;
+            color: black;
+            text-align: left;
+            text-decoration: none;
+        }
+
+        .webgrid-footer {
+        }
+
+        .webgrid-row-style {
+            padding: 3px 7px 2px;
+            vertical-align:top;
+        }
+
+        .webgrid-alternating-row {
+            background-color: #F5F5F5;
+            padding: 3px 7px 2px;
+            vertical-align:top;
+        }
+
+        .col1Width {
+            width: 50px;
+        }
+
+        .col2Width {
+            width: 300px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.edit-mode').hide();
+            $('.edit-user, .cancel-user').on('click', function () {
+                var tr = $(this).parents('tr:first');
+                tr.find('.edit-mode, .display-mode').toggle();
+            });
+
+            $('.save-user').on('click', function () {
+                var tr = $(this).parents('tr:first');
+                var Name = tr.find("#Name").val();
+                var SurName = tr.find("#SurName").val();
+                var UserID = tr.find("#UserID").html();
+                tr.find("#lblName").text(Name);
+                tr.find("#lblSurName").text(SurName);
+                tr.find('.edit-mode, .display-mode').toggle();
+                var UserModel =
+                    {
+                        "ID": UserID,
+                        "Name": Name,
+                        "SurName": SurName
+                    };
+                $.ajax({
+                    url: '/User/ChangeUser/',
+                    data: JSON.stringify(UserModel),
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        alert(data);
+                    }
+                });
+
+            });
+        })
+    </script>
 
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -68,34 +173,38 @@
 
             <h1>API Results</h1>
             <p>You can edit and save updated information to database</p>
-            <table id="customers" border="1">
-                <tr>
-                    <th>Scanned Images</th>
-                    <th>Text found</th>
-                    <th>Data Lake Storage URL</th>
-                    @*<th>Remarks</th>*@
-                </tr>
-                @foreach (var item in Model)
-                {
-                    foreach (var items in item.listApiData)
-                    {
-                        <tr>
-                            <td style="max-width:250px; max-height:274px;">
-                                @{
-                                    var base64 = Convert.ToBase64String(items.imageData);
-                                    var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
-                                }
-                                <img src='@imgSrc' style='width:100%' />
-                            </td>
-                            <td style="max-width:250px; max-height:274px;">@Html.DisplayFor(modelItem => items.imageText)</td>
-                            <td style="max-width:259px; max-height:274px;white-space:pre-wrap; word-wrap:break-word"><a href="@Html.DisplayFor(modelItem => items.ImageUrl)">@Html.DisplayFor(modelItem => items.ImageUrl)</a></td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = items.pid })
-                            </td>
-                        </tr>
-                    }
-                }
-            </table>
+            
+
+            @{
+                var grid = new WebGrid(Model);
+            }
+
+            <div id="gridContent" style=" padding:20px; ">
+               
+                @grid.GetHtml(
+                    tableStyle: "webgrid-table",
+                    headerStyle: "webgrid-header",
+                    footerStyle: "webgrid-footer",
+                    alternatingRowStyle: "webgrid-alternating-row",
+                    selectedRowStyle: "webgrid-selected-row",
+                    rowStyle: "webgrid-row-style",
+                    mode: WebGridPagerModes.All,
+                    columns:
+                        grid.Columns(
+                         grid.Column("pid","Cosmos DB Reference", format: @<text><span class="display-mode">@item.pid </span></text>, style: "height:250px;width:300px"),
+                               grid.Column("imageText", "imageText", format: @<text> <input style="width:250px;height:150px;" type="text" id="imageText" value="@item.imageText" class="edit-mode" /></text>, style: "height:250px;width:300px;vertical-align:top"),
+                               grid.Column("ImageUrl", "ImageUrl", format: @<text> <label id="ImageUrl">@item.ImageUrl</label></text>, style: "height:250px;width:300px"),
+                        grid.Column("imageData", "Image", format: @<text>
+                            @{ var base64 = Convert.ToBase64String(item.imageData);
+                                    var imgsrc = string.Format("data:image/gif;base64,{0}", base64); }
+                            <img src='@imgsrc' style="height:250px;width:300px" /> </text>, style: "max-width:250px; max-height:274px;"),
+                        grid.Column("Action", format: @<text>
+                            <button class="edit-user display-mode">Edit</button>
+                            <button class="save-user edit-mode">Save</button>
+                            <button class="cancel-user edit-mode">Cancel</button>
+                        </text>, style:"width:170px", canSort: false)
+                         ))
+            </div>
         </div>
     </div>
 

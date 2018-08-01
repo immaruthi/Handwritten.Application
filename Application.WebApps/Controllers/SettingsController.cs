@@ -1,14 +1,18 @@
 ﻿using Application.WebApps.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml;
 
 namespace Application.WebApps.Controllers
 {
     public class SettingsController : Controller
     {
+
+        XmlDocument xmldc = new XmlDocument();
 
         public IEnumerable<PocSettingModelData> getData()
         {
@@ -22,6 +26,11 @@ namespace Application.WebApps.Controllers
         // GET: Settings
         public ActionResult Index()
         {
+
+            DataSet ds = new DataSet();
+
+            
+
             return View(getData());
         }
 

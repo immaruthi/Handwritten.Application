@@ -8,7 +8,6 @@ namespace Application.WebApps.Models
 {
     public class ExtractDataRequestModel
     {
-        public string referenceFileName { get; set; }
-        public Stream fileStream { get; set; }
+       public HttpPostedFile[] PostedFile { get; set; }
     }
 }
