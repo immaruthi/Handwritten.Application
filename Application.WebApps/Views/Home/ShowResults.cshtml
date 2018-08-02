@@ -51,7 +51,7 @@
             font-family: Arial,Helvetica,sans-serif;
             font-size: 14px;
             font-weight: normal;
-            width: 1000px;
+            width: 800px;
             display: table;
             border-collapse: collapse;
             border: solid px #C5C5C5;
@@ -94,6 +94,28 @@
     </style>
 
     <script type="text/javascript">
+        function m(obj1, obj2) {
+            var pid = $("#" + obj1).text();
+            var SurName = $(obj2).val();
+            var UserModel = { "cosmosID": pid, "imageText": SurName };
+
+            $.ajax({
+                url: '/Home/GetGridData/',
+                data: JSON.stringify(UserModel),
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {
+                    if (data.status == "Fail") {
+                        alert("Fail to Update " + data.cosmosID);
+                        //$(obj2).val(data.imageText);
+                    }
+                    else {
+                        alert("Successfully Updated " + data.cosmosID);
+                    }
+                    $(obj2).val(data.imageText);
+                }
+            });
+        }
         $(function () {
             $('.edit-mode').hide();
             $('.edit-user, .cancel-user').on('click', function () {
@@ -102,6 +124,7 @@
             });
 
             $('.save-user').on('click', function () {
+                alert('hi');
                 var tr = $(this).parents('tr:first');
                 var Name = tr.find("#Name").val();
                 var SurName = tr.find("#SurName").val();
@@ -180,30 +203,30 @@
             }
 
             <div id="gridContent" style=" padding:20px; ">
-               
+
                 @grid.GetHtml(
-                    tableStyle: "webgrid-table",
-                    headerStyle: "webgrid-header",
-                    footerStyle: "webgrid-footer",
-                    alternatingRowStyle: "webgrid-alternating-row",
-                    selectedRowStyle: "webgrid-selected-row",
-                    rowStyle: "webgrid-row-style",
-                    mode: WebGridPagerModes.All,
-                    columns:
-                        grid.Columns(
-                         grid.Column("pid","Cosmos DB Reference", format: @<text><span class="display-mode">@item.pid </span></text>, style: "height:250px;width:300px"),
-                               grid.Column("imageText", "imageText", format: @<text> <input style="width:250px;height:150px;" type="text" id="imageText" value="@item.imageText" class="edit-mode" /></text>, style: "height:250px;width:300px;vertical-align:top"),
-                               grid.Column("ImageUrl", "ImageUrl", format: @<text> <label id="ImageUrl">@item.ImageUrl</label></text>, style: "height:250px;width:300px"),
-                        grid.Column("imageData", "Image", format: @<text>
-                            @{ var base64 = Convert.ToBase64String(item.imageData);
-                                    var imgsrc = string.Format("data:image/gif;base64,{0}", base64); }
-                            <img src='@imgsrc' style="height:250px;width:300px" /> </text>, style: "max-width:250px; max-height:274px;"),
-                        grid.Column("Action", format: @<text>
-                            <button class="edit-user display-mode">Edit</button>
-                            <button class="save-user edit-mode">Save</button>
-                            <button class="cancel-user edit-mode">Cancel</button>
-                        </text>, style:"width:170px", canSort: false)
-                         ))
+             tableStyle: "webgrid-table",
+             headerStyle: "webgrid-header",
+             footerStyle: "webgrid-footer",
+             alternatingRowStyle: "webgrid-alternating-row",
+             selectedRowStyle: "webgrid-selected-row",
+             rowStyle: "webgrid-row-style",
+             mode: WebGridPagerModes.All,
+             columns:
+    grid.Columns(
+    grid.Column("pid", "Cosmos DB Reference", format: @<text><p id=@item.pid class="display-mode">@item.OCRID </p></text>, style: "height:250px;width:300px"),
+    grid.Column("imageText", "imageText", format: @<text> <textarea rows="4" cols="50" type="text" id=@item.sid class="edit-mode" style="height:250px;width:300px">@item.imageText</textarea></text>),
+    
+    grid.Column("imageData", "Image", format: @<text>
+                @{ var base64 = Convert.ToBase64String(item.imageData);
+         var imgsrc = string.Format("data:image/gif;base64,{0}", base64); }
+                <img src='@imgsrc' style="height:250px;width:300px;vertical-align:top" /> </text>, style: "max-width:250px; max-height:274px"),
+    grid.Column("ImageUrl", "ImageUrl", format: @<text> <a class="display-mode" id="ImageUrl" href=@item.ImageUrl style="max-width:259px; max-height:274px;white-space:pre-wrap; word-wrap:break-word">File Reference URL</a></text>, style: "height:250px;width:200px"),
+
+    grid.Column("Action", format: @<text>
+                <button class="save-user edit-mode" id="btnsave" onclick="m(@item.pid,@item.sid);">Update Content</button>
+            </text>, style: "width:250px", canSort: false)
+      ))
             </div>
         </div>
     </div>

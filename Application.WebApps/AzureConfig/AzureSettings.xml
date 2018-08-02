@@ -1,0 +1,10 @@
+﻿<AzureApplication>
+  <Configuration>
+    <AzureStorageConnectionString>DefaultEndpointsProtocol=https;AccountName=ocrextracthandwrittentx;AccountKey=pOHbwrr3hGc7Q0msNk7rgEIDtuKq54YofeoJeOOicm05TLYtnNPvnaxnU+ruC+oZesmwp2qoYzge+pvUq1ihvA==;EndpointSuffix=core.windows.net</AzureStorageConnectionString>
+    <AzureFileStorageReference>ocrextracthandwrittentx</AzureFileStorageReference>
+    <AzureVisionAPISubscriptionKey>908a6575a1da43a9aa736f8bf8dd5124</AzureVisionAPISubscriptionKey>
+    <AzureVisionAPIEndPoint>https://westcentralus.api.cognitive.microsoft.com/vision/v2.0/recognizeText</AzureVisionAPIEndPoint>
+    <AzureCosmosDBConnectionString>https://cosmosdbfor.documents.azure.com:443/</AzureCosmosDBConnectionString>
+    <AzureCosmonDBPrimaryKey1>vY20dhewGFN7ARZA88DvJ77rdXwBhUc2IINoD9FzCmDMyD78hbd6U484TV2EuqJnnZd2vJyhudPT0Q6ezKcJpQ==</AzureCosmonDBPrimaryKey1>
+  </Configuration>
+</AzureApplication>

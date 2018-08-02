@@ -13,7 +13,9 @@ namespace Application.WebApps.Models
 
     public class APIData
     {
+        public string OCRID { get; set; }
         public int pid { get; set; }
+        public string sid { get; set; }
         public byte[] imageData { get; set; }
         public string imageText { get; set; }
         public string ImageUrl { get; set; }
