@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml;
 
 namespace Application.WebApps.Controllers
 {
@@ -31,6 +32,39 @@ namespace Application.WebApps.Controllers
         [HttpGet]
         public async Task<ActionResult> DoFileUploads()
         {
+            //try
+            //{
+            //    //"http://handwrittenservice.azurewebsites.net/AzureConfig/AzureSettings.xml"
+
+            //    XmlDocument doc = new XmlDocument();
+            //    doc.Load(@"AzureConfig\AzureSettings.xml");
+
+            //    // get a list of nodes - in this case, I'm selecting all <AID> nodes under
+            //    // the <GroupAIDs> node - change to suit your needs
+            //    XmlNodeList aNodes = doc.SelectNodes("/AzureApplication/Configuration/sample");
+
+            //    // loop through all AID nodes
+            //    foreach (XmlNode aNode in aNodes)
+            //    {
+            //        // grab the "id" attribute
+            //        string idAttribute = aNode.ChildNodes[0].Value;
+
+            //        // check if that attribute even exists...
+            //        if (!string.IsNullOrEmpty(idAttribute))
+            //        {
+            //            idAttribute = "515";
+            //        }
+            //    }
+
+            //    doc.GetElementsByTagName("sample")[0].InnerText = "sample x";
+
+            //    // save the XmlDocument back to disk
+            //    doc.Save(@"AzureConfig\AzureSettings.xml");
+            //}
+            //catch(Exception ex)
+            //{
+
+            //}
             return View();
         }
         
@@ -110,7 +144,7 @@ namespace Application.WebApps.Controllers
                             OCRID = Guid.NewGuid().ToString(),
                             imageData = bytesFromImage,
                             imageText = builder.ToString(),
-                            ImageUrl = fileSas.Uri.AbsoluteUri.ToString(),
+                            ImageUrl = Path.GetFileName(files[i].FileName),//fileSas.Uri.AbsoluteUri.ToString(),
                             pid = i,
                             sid = "text" + i,
                             Error = "no Error",
@@ -127,7 +161,7 @@ namespace Application.WebApps.Controllers
                             OCRID= Guid.NewGuid().ToString(),
                             imageData = bytesFromImage,
                             imageText = errorObject.error.message.ToString(),
-                            ImageUrl = fileSas.Uri.AbsoluteUri.ToString(),
+                            ImageUrl = Path.GetFileName(files[i].FileName),//fileSas.Uri.AbsoluteUri.ToString(),
                             pid = i,
                             sid = "text" + i,
                             Error = errorObject.error.message.ToString(),

@@ -1,5 +1,6 @@
 ﻿<AzureApplication>
   <Configuration>
+    <sample>Test</sample>
     <AzureStorageConnectionString>DefaultEndpointsProtocol=https;AccountName=ocrextracthandwrittentx;AccountKey=pOHbwrr3hGc7Q0msNk7rgEIDtuKq54YofeoJeOOicm05TLYtnNPvnaxnU+ruC+oZesmwp2qoYzge+pvUq1ihvA==;EndpointSuffix=core.windows.net</AzureStorageConnectionString>
     <AzureFileStorageReference>ocrextracthandwrittentx</AzureFileStorageReference>
     <AzureVisionAPISubscriptionKey>908a6575a1da43a9aa736f8bf8dd5124</AzureVisionAPISubscriptionKey>

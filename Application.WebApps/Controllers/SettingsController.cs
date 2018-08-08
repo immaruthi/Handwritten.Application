@@ -18,7 +18,16 @@ namespace Application.WebApps.Controllers
         {
             var obj = new List<PocSettingModelData>();
 
-            obj.Add(new PocSettingModelData { id = 1, AzureConnectionString = "AAA", CosmosDBConnectionString = "BBB", cosmosDBPrimaryKey = "CCC", FileStorageReference = "DDD", VisionAPIConnectionString = "EEE", VisionAPISubscriptionKey = "FFF" });
+            obj.Add(new PocSettingModelData
+            {
+                id = 1,
+                AzureConnectionString = "DefaultEndpointsProtocol=https;AccountName=ocrextracthandwrittentx;AccountKey=pOHbwrr3hGc7Q0msNk7rgEIDtuKq54YofeoJeOOicm05TLYtnNPvnaxnU+ruC+oZesmwp2qoYzge+pvUq1ihvA==;EndpointSuffix=core.windows.net",
+                CosmosDBConnectionString = "https://cosmosdbfor.documents.azure.com:443/",
+                cosmosDBPrimaryKey = "vY20dhewGFN7ARZA88DvJ77rdXwBhUc2IINoD9FzCmDMyD78hbd6U484TV2EuqJnnZd2vJyhudPT0Q6ezKcJpQ==",
+                FileStorageReference = "ocrextracthandwrittentx",
+                VisionAPIConnectionString = "https://westcentralus.api.cognitive.microsoft.com/vision/v2.0/recognizeText",
+                VisionAPISubscriptionKey = "908a6575a1da43a9aa736f8bf8dd5124"
+            });
             
             return obj;
         }

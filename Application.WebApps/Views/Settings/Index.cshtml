@@ -10,7 +10,7 @@
 <head>
 
     <meta charset="utf-8">
-    <title>API Results</title>
+    <title>POC SCAN Settings</title>
     <meta name="description" content="Contact page with contact form and simplicty information with e-mail and address. Contact form with check input and textarea. ">
     <meta name="keywords" content="thomsoon, simplicity, theme, html5, contact, form">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -65,7 +65,7 @@
     <div class="content" id="ajax-content">
 
         <div class="text-intro">
-            <table id="customers" style="width:450px;background-color:cornflowerblue">
+            <table id="customers" style="width:750px;background-color:cornflowerblue">
                 <tr>
                     <th>
                         Azure ConnectionString
@@ -91,25 +91,25 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>
+                        <td style="max-width:180px; max-height:274px;white-space:pre-wrap; word-wrap:break-word">
                             @Html.DisplayFor(modelItem => item.AzureConnectionString)
                         </td>
-                        <td>
+                        <td style="max-width:180px; max-height:274px;white-space:pre-wrap; word-wrap:break-word">
                             @Html.DisplayFor(modelItem => item.FileStorageReference)
                         </td>
-                        <td>
+                        <td style="max-width:180px; max-height:274px;white-space:pre-wrap; word-wrap:break-word">
                             @Html.DisplayFor(modelItem => item.CosmosDBConnectionString)
                         </td>
-                        <td>
+                        <td style="max-width:180px; max-height:274px;white-space:pre-wrap; word-wrap:break-word">
                             @Html.DisplayFor(modelItem => item.cosmosDBPrimaryKey)
                         </td>
-                        <td>
+                        <td style="max-width:180px; max-height:274px;white-space:pre-wrap; word-wrap:break-word">
                             @Html.DisplayFor(modelItem => item.VisionAPIConnectionString)
                         </td>
-                        <td>
+                        <td style="max-width:180px; max-height:274px;white-space:pre-wrap; word-wrap:break-word">
                             @Html.DisplayFor(modelItem => item.VisionAPISubscriptionKey)
                         </td>
-                        <td>
+                        <td style="max-width:180px; max-height:274px;white-space:pre-wrap; word-wrap:break-word">
                             @Html.ActionLink("Edit", "Edit", new { id = item.id }) @*|
                                 @Html.ActionLink("Details", "Details", new { id=item.id }) |
                                 @Html.ActionLink("Delete", "Delete", new { id=item.id })*@

@@ -12,7 +12,7 @@
 
 
     <meta charset="utf-8">
-    <title>API Results</title>
+    <title>Scanned Documents Results</title>
     <meta name="description" content="Contact page with contact form and simplicty information with e-mail and address. Contact form with check input and textarea. ">
     <meta name="keywords" content="thomsoon, simplicity, theme, html5, contact, form">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -194,7 +194,7 @@
 
         <div class="text-intro">
 
-            <h1>API Results</h1>
+            <h2>Scanned Documents Results</h2>
             <p>You can edit and save updated information to database</p>
             
 
@@ -205,28 +205,28 @@
             <div id="gridContent" style=" padding:20px; ">
 
                 @grid.GetHtml(
-             tableStyle: "webgrid-table",
-             headerStyle: "webgrid-header",
-             footerStyle: "webgrid-footer",
-             alternatingRowStyle: "webgrid-alternating-row",
-             selectedRowStyle: "webgrid-selected-row",
-             rowStyle: "webgrid-row-style",
-             mode: WebGridPagerModes.All,
-             columns:
-    grid.Columns(
-    grid.Column("pid", "Cosmos DB Reference", format: @<text><p id=@item.pid class="display-mode">@item.OCRID </p></text>, style: "height:250px;width:300px"),
-    grid.Column("imageText", "imageText", format: @<text> <textarea rows="4" cols="50" type="text" id=@item.sid class="edit-mode" style="height:250px;width:300px">@item.imageText</textarea></text>),
-    
-    grid.Column("imageData", "Image", format: @<text>
+      tableStyle: "webgrid-table",
+      headerStyle: "webgrid-header",
+      footerStyle: "webgrid-footer",
+      alternatingRowStyle: "webgrid-alternating-row",
+      selectedRowStyle: "webgrid-selected-row",
+      rowStyle: "webgrid-row-style",
+      mode: WebGridPagerModes.All,
+      columns:
+grid.Columns(
+grid.Column("pid", "Cosmos DB Reference", format: @<text><p id=@item.pid class="display-mode">@item.OCRID </p></text>, style: "height:250px;width:300px"),
+grid.Column("imageText", "Text Extract", format: @<text> <textarea rows="4" cols="50" type="text" id=@item.sid class="edit-mode" style="height:250px;width:300px">@item.imageText</textarea></text>),
+
+grid.Column("imageData", "Scanned Image", format: @<text>
                 @{ var base64 = Convert.ToBase64String(item.imageData);
          var imgsrc = string.Format("data:image/gif;base64,{0}", base64); }
                 <img src='@imgsrc' style="height:250px;width:300px;vertical-align:top" /> </text>, style: "max-width:250px; max-height:274px"),
-    grid.Column("ImageUrl", "ImageUrl", format: @<text> <a class="display-mode" id="ImageUrl" href=@item.ImageUrl style="max-width:259px; max-height:274px;white-space:pre-wrap; word-wrap:break-word">File Reference URL</a></text>, style: "height:250px;width:200px"),
+grid.Column("ImageUrl", "Image Name", format: @<text><p style="max-width:200px; max-height:274px">@item.ImageUrl</p></text>),
 
-    grid.Column("Action", format: @<text>
+            grid.Column("Action", "Text Extract Update", format: @<text>
                 <button class="save-user edit-mode" id="btnsave" onclick="m(@item.pid,@item.sid);">Update Content</button>
             </text>, style: "width:250px", canSort: false)
-      ))
+            ))
             </div>
         </div>
     </div>
@@ -236,7 +236,7 @@
 
         <div class="footer-margin">
             <div class="social-footer">
-                <a href="https://www.facebook.com/immaruthi"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.facebook.com/Pactera/"><i class="fa fa-facebook"></i></a>
             </div>
             <div class="copyright">© Copyright 2018 Pactera Technology International Ltd. All Rights Reserved.</div>
         </div>
