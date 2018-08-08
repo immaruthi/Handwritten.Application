@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace Application.WebApps.Controllers
 {
-    public class SettingsController : Controller
+    public class POCSettingsController : Controller
     {
 
         XmlDocument xmldc = new XmlDocument();

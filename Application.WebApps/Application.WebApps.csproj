@@ -176,12 +176,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\DoFileUploads.cshtml" />
     <Content Include="Views\Home\ShowResults.cshtml" />
-    <Content Include="Views\Settings\Index.cshtml" />
-    <Content Include="Views\Settings\Details.cshtml" />
-    <Content Include="Views\Settings\Create.cshtml" />
-    <Content Include="Views\Settings\Create1.cshtml" />
-    <Content Include="Views\Settings\Edit.cshtml" />
-    <Content Include="Views\Settings\Edit1.cshtml" />
+    <Content Include="Views\POCSettings\Index.cshtml" />
+    <Content Include="Views\POCSettings\Details.cshtml" />
+    <Content Include="Views\POCSettings\Create.cshtml" />
+    <Content Include="Views\POCSettings\Create1.cshtml" />
+    <Content Include="Views\POCSettings\Edit.cshtml" />
+    <Content Include="Views\POCSettings\Edit1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
